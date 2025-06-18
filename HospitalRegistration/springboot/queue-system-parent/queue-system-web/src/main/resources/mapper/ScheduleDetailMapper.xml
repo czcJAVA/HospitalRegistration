@@ -1,0 +1,33 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itmk.web.schedule_detail.mapper.ScheduleDetailMapper">
+    <select id="getList" resultType="com.itmk.web.schedule_detail.entity.ScheduleDetail">
+        select s.*,d.dept_id,d.dept_name from
+        schedule_detail as s
+        left join sys_user as u on u.user_id = s.doctor_id
+        left join department as d on d.dept_id = u.dept_id
+        where 1=1
+        <if test="parm.doctorName != null and parm.doctorName != ''">
+            and s.doctor_name like concat('%', #{parm.doctorName}, '%')
+        </if>
+        order by s.schedule_id desc
+    </select>
+
+    <select id="selectById" resultType="com.itmk.web.schedule_detail.entity.ScheduleDetail">
+        select s.* ,u.price from schedule_detail as s
+        left join sys_user  as u  on u.user_id = s.doctor_id
+        where s.doctor_id =#{parm.doctorId} and s.type = '1' and s.last_amount > 0
+        <if test="parm.startDate != null ">
+            AND  DATE_FORMAT(s.times,'%Y-%m-%d') <![CDATA[ >= ]]> DATE_FORMAT( #{parm.startDate},'%Y-%m-%d')
+        </if>
+        order by s.times asc
+    </select>
+    <update id="subCount">
+        update schedule_detail set last_amount = last_amount -1 where last_amount> 0 and  schedule_id =#{scheduleId}
+    </update>
+    <update id="addCount">
+        update schedule_detail set last_amount = last_amount +1 where   schedule_id =#{scheduleId}
+    </update>
+</mapper>
