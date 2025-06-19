@@ -33,7 +33,7 @@
 - **就诊记录**：记录患者就诊信息，查看历史就诊记录
 
 ## 3、运行效果
-### 小程序端
+### （1）小程序端
 
 ![contents](picture/picture1.png)---![contents](picture/picture2.png)
 ![contents](picture/picture3.png)---![contents](picture/picture4.png)
@@ -43,7 +43,7 @@
 ![contents](picture/picture11.png)---![contents](picture/picture12.png)
 ![contents](picture/picture13.png)---![contents](picture/picture14.png)
 ![contents](picture/picture15.png)---![contents](picture/picture16.png)
-### 管理员端
+### （2）管理员端
 
 ![contents](picture/picture17.png)
 ![contents](picture/picture18.png)
